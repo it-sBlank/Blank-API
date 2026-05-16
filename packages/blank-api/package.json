@@ -1,0 +1,45 @@
+{
+  "name": "blank-api",
+  "version": "1.0.0",
+  "description": "Official SDK for the Blank publishing API — create, read, and edit web pages programmatically from anywhere.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "blank",
+    "publishing",
+    "api",
+    "telegraph",
+    "blog",
+    "posts",
+    "sdk",
+    "rest"
+  ],
+  "author": "k4ran909",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k4ran909/Blank"
+  },
+  "homepage": "https://blank.o3dn.info",
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

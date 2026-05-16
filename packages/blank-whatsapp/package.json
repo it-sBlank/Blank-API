@@ -1,0 +1,30 @@
+{
+  "name": "blank-whatsapp",
+  "version": "1.0.0",
+  "description": "WhatsApp bot integration for the Blank publishing API — text formatting, media uploads, and reply helpers.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["blank", "whatsapp", "baileys", "whatsapp-web.js", "bot", "publishing"],
+  "author": "k4ran909",
+  "license": "MIT",
+  "dependencies": {
+    "blank-api": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

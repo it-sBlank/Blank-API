@@ -1,0 +1,30 @@
+{
+  "name": "blank-telegram",
+  "version": "1.0.0",
+  "description": "Telegram bot integration for the Blank publishing API — inline keyboards, entity parsing, and photo uploads.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["blank", "telegram", "telegraf", "bot", "publishing", "inline-keyboard"],
+  "author": "k4ran909",
+  "license": "MIT",
+  "dependencies": {
+    "blank-api": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
