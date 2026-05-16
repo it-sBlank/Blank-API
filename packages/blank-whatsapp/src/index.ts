@@ -81,8 +81,8 @@ export class BlankWhatsApp extends Blank {
   /**
    * Upload media from a Buffer (Baileys / Node.js).
    */
-  async fromMediaBuffer(buffer: Buffer, filename?: string): Promise<string> {
-    const blob = new Blob([buffer])
+  async fromMediaBuffer(buffer: Buffer | Uint8Array, filename?: string): Promise<string> {
+    const blob = new Blob([new Uint8Array(buffer)])
     return this.uploadImage(blob, filename || 'media.png')
   }
 
