@@ -47,12 +47,29 @@ npm install blank-api
 
 ### 2. Create an API Token
 You can create a token directly from the code. You only need to do this once.
+
+**Via Node.js:**
 ```typescript
 import { createToken } from 'blank-api';
 
 // Create a new token for your application
 const { token } = await createToken('https://blank.o3dn.info/api/v1/token', 'My Cool Bot', 'OwnerName');
 console.log('Save this token:', token);
+```
+
+**Via Windows PowerShell:**
+```powershell
+Invoke-RestMethod -Uri "https://blank.o3dn.info/api/v1/token" `
+  -Method POST `
+  -Headers @{ "Content-Type" = "application/json" } `
+  -Body '{"name": "My Cool Bot", "owner_name": "k4ran"}'
+```
+
+**Via cURL (Mac/Linux):**
+```bash
+curl -X POST https://blank.o3dn.info/api/v1/token \
+  -H "Content-Type: application/json" \
+  -d '{"name": "My Cool Bot", "owner_name": "k4ran"}'
 ```
 
 ### 3. Publish a Post
