@@ -35,6 +35,31 @@ This monorepo contains 4 official packages:
 | [`blank-discord`](./packages/blank-discord) | [![npm](https://img.shields.io/npm/v/blank-discord?style=flat-square)](https://www.npmjs.com/package/blank-discord) | Discord.js helpers (Embeds, CDN image rehosting). |
 | [`blank-telegram`](./packages/blank-telegram) | [![npm](https://img.shields.io/npm/v/blank-telegram?style=flat-square)](https://www.npmjs.com/package/blank-telegram) | Telegram Bot API helpers (Inline Keyboards, Entity parsing). |
 | [`blank-whatsapp`](./packages/blank-whatsapp) | [![npm](https://img.shields.io/npm/v/blank-whatsapp?style=flat-square)](https://www.npmjs.com/package/blank-whatsapp) | whatsapp-web.js & Baileys helpers (Text parsing, Buffers). |
+| [`blank-mcp`](./packages/blank-mcp) | [![npm](https://img.shields.io/npm/v/blank-mcp?style=flat-square)](https://www.npmjs.com/package/blank-mcp) | MCP Server for AI Agents (Claude, Cursor, Antigravity). |
+
+---
+
+## 🤖 Use with AI Agents (MCP Server)
+
+Blank officially supports the **Model Context Protocol (MCP)**, meaning you can give AI models (like Claude, Cursor, or Antigravity) the ability to instantly publish web pages.
+
+Add the following to your AI agent's MCP configuration file (e.g., `claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "blank": {
+      "command": "npx",
+      "args": ["-y", "blank-mcp"],
+      "env": {
+        "BLANK_API_TOKEN": "blk_your_token_here"
+      }
+    }
+  }
+}
+```
+
+Once connected, your AI agent will have access to native tools: `publish_post`, `edit_post`, and `get_post`.
 
 ---
 
