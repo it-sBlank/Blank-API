@@ -41,25 +41,17 @@ This monorepo contains 4 official packages:
 
 ## 🤖 Use with AI Agents (MCP Server)
 
-Blank officially supports the **Model Context Protocol (MCP)**, meaning you can give AI models (like Claude, Cursor, or Antigravity) the ability to instantly publish web pages.
+Blank officially supports the **Model Context Protocol (MCP)**, meaning you can give AI models (like Claude Desktop) the ability to instantly publish web pages.
 
-Add the following to your AI agent's MCP configuration file (e.g., `claude_desktop_config.json`):
+To automatically configure Claude Desktop to use Blank, just run this 1-line command in your terminal and paste your API token when prompted:
 
-```json
-{
-  "mcpServers": {
-    "blank": {
-      "command": "npx",
-      "args": ["-y", "blank-mcp"],
-      "env": {
-        "BLANK_API_TOKEN": "blk_your_token_here"
-      }
-    }
-  }
-}
+```bash
+npx -y blank-mcp install
 ```
 
-Once connected, your AI agent will have access to native tools: `publish_post`, `edit_post`, and `get_post`.
+*(This command will automatically find your `claude_desktop_config.json` on Windows or Mac and configure it for you!)*
+
+Once connected, completely restart Claude Desktop, and your AI agent will have access to native tools: `publish_post`, `edit_post`, and `get_post`.
 
 ---
 
