@@ -1,6 +1,6 @@
 {
   "name": "blank-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP Server for Blank API — allows AI agents to publish directly to the web.",
   "main": "dist/index.js",
   "bin": {
