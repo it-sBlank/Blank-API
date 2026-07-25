@@ -148,7 +148,7 @@ export class BlankTelegram extends Blank {
             : `<pre>${content}</pre>`
           break
         case 'text_link':
-          replacement = `<a href="${entity.url}">${content}</a>`
+          replacement = `<a href="${/^https?:\/\//i.test(entity.url || '') ? entity.url : '#'}">${content}</a>`
           break
         case 'url':
           replacement = `<a href="${content}">${content}</a>`

@@ -295,6 +295,10 @@ export class Blank {
 
   /** Convert basic markdown to HTML. */
   static markdownToHtml(md: string): string {
+    // Validate a URL is safe before embedding in HTML attributes
+    const safeUrl = (url: string) =>
+      /^(https?:\/\/|\/)/i.test(url) ? url : '#'
+
     let html = md
       // Headers
       .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -310,10 +314,10 @@ export class Blank {
       .replace(/~~(.+?)~~/g, '<del>$1</del>')
       // Code
       .replace(/`([^`]+)`/g, '<code>$1</code>')
-      // Links
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-      // Images
-      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />')
+      // Links — validate href
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => `<a href="${safeUrl(url)}">${text}</a>`)
+      // Images — validate src
+      .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => `<img src="${safeUrl(src)}" alt="${alt}" />`)
       // Horizontal rules
       .replace(/^---$/gm, '<hr>')
 

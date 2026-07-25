@@ -26,6 +26,15 @@ const GetPostSchema = z.object({
   slug: z.string().describe("The slug of the post to retrieve"),
 });
 
+const UploadImageUrlSchema = z.object({
+  url: z.string().describe("Public image URL to re-host (e.g., Discord CDN or Telegram photo)"),
+});
+
+const ListPostsSchema = z.object({
+  page: z.number().optional().describe("Page number (default: 1)"),
+  limit: z.number().optional().describe("Results per page (default: 20)"),
+});
+
 async function runInstaller() {
   console.log("🚀 Welcome to the Blank MCP 1-Line Installer!");
   console.log("This will automatically configure Claude Desktop to use the Blank API.");
@@ -95,7 +104,9 @@ async function startServer() {
     process.exit(1);
   }
 
-  const blank = new Blank(BLANK_API_TOKEN, { baseUrl: 'https://blank.o3dn.info' });
+  const blank = new Blank(BLANK_API_TOKEN, {
+    baseUrl: process.env.BLANK_API_BASE || 'https://blank.o3dn.info',
+  });
 
   const server = new Server(
     {
@@ -150,6 +161,29 @@ async function startServer() {
             required: ["slug"],
           },
         },
+        {
+          name: "upload_image_url",
+          description: "Re-host an external image URL (e.g., Discord CDN or Telegram photo) directly to Cloudflare R2 via Blank.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              url: { type: "string" },
+            },
+            required: ["url"],
+          },
+        },
+        {
+          name: "list_posts",
+          description: "List all posts associated with your Blank API token.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              page: { type: "number" },
+              limit: { type: "number" },
+            },
+            required: [],
+          },
+        },
       ],
     };
   });
@@ -198,6 +232,31 @@ async function startServer() {
               {
                 type: "text",
                 text: `Post Data:\nTitle: ${post.title}\nAuthor: ${post.author || 'N/A'}\nURL: ${post.url}\n\nContent (HTML):\n${post.content}`,
+              },
+            ],
+          };
+        }
+        case "upload_image_url": {
+          const { url } = UploadImageUrlSchema.parse(request.params.arguments);
+          const hostedUrl = await blank.uploadImageFromUrl(url);
+          return {
+            content: [
+              {
+                type: "text",
+                text: `Image uploaded successfully!\nHosted URL: ${hostedUrl}`,
+              },
+            ],
+          };
+        }
+        case "list_posts": {
+          const { page, limit } = ListPostsSchema.parse(request.params.arguments);
+          const result = await blank.listPosts({ page, limit });
+          const posts = result.posts.map(p => `- [${p.title}](${p.url}) (slug: ${p.slug})`).join('\n');
+          return {
+            content: [
+              {
+                type: "text",
+                text: `Posts (page ${result.page}, ${result.total} total):\n${posts || 'No posts found.'}`,
               },
             ],
           };

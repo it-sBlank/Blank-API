@@ -5,7 +5,7 @@
 
   <a href="https://www.npmjs.com/package/blank-api"><img src="https://img.shields.io/npm/v/blank-api?style=flat-square&color=blue" alt="npm version" /></a>
   <a href="https://blank.o3dn.info/docs"><img src="https://img.shields.io/badge/Docs-Live-success?style=flat-square" alt="Docs" /></a>
-  <a href="https://github.com/k4ran909/Blank-API/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License" /></a>
+  <a href="https://github.com/it-sBlank/Blank-API/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License" /></a>
 </div>
 
 ---
