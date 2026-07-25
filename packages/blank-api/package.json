@@ -30,11 +30,11 @@
     "sdk",
     "rest"
   ],
-  "author": "it-sBlank",
+  "author": "k4ran909",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/it-sBlank/Blank-API"
+    "url": "https://github.com/k4ran909/Blank"
   },
   "homepage": "https://blank.o3dn.info",
   "devDependencies": {
