@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": ["blank", "discord", "discord.js", "embed", "publishing", "bot"],
-  "author": "k4ran909",
+  "author": "it-sBlank",
   "license": "MIT",
   "dependencies": {
     "blank-api": "^1.0.0"

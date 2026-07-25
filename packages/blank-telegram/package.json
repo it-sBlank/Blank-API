@@ -27,7 +27,7 @@
     "publishing",
     "inline-keyboard"
   ],
-  "author": "k4ran909",
+  "author": "it-sBlank",
   "license": "MIT",
   "dependencies": {
     "blank-api": "^1.0.0"
